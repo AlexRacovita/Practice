@@ -20,14 +20,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let cell = UITableViewCell()
         cell.textLabel?.text = String(data[indexPath.row])
+        if(indexPath.row % 2 == 0) {
+            cell.backgroundColor = UIColor .black
+            cell.textLabel?.textColor = UIColor.white
+        }
         return cell
     }
     
+    func checkPrime (_ i:Int) -> Bool{
+        
+        for x in 2...Int(sqrt(Double(i))){
+            if (i % x == 0){
+                return false
+            }
+        
+        }
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        for i in 2...1000000 {
-            data.append(i)
+        data.append(2)
+        data.append(3)
+        for i in 5...1000000 {
+            if(checkPrime(i) == true){
+                data.append(i)
+            }
         }
         
     }
